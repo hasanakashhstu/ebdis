@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  background-color: #CCCCCC;
+  color: #000066;
+}
+
+.main-content {
+  width: 90%;
+  margin: 0 auto;
+  min-width: 1000px;
+  border: 5px solid #0099CC;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.banner {
+  background-color: #0099CC;
+  text-align: center;
+}
+
+.banner__logo {
+  width: 850px;
+  height: 100px;
+}
+
+.left-column {
+  position: fixed;
+  z-index: 1;
+  top: 85px;
+  left: 65px;
+  width: 300px;
+  padding: 50px 10px;
+}
+
+.right-column {
+  width: 700px;
+  margin-left: 300px;
+  top: 0;
+}
+
+.login-form {
+  margin: 70px 0;
+  border: 3px solid #0099CC;
+  position: relative;
+  left: 4px;
+}
+
+form {
+  padding: 35px 0px 8px 0px;
+}
+
+input {
+  float: right;
+}
+
+.login-text {
+  position: absolute;
+  bottom: 265px;
+  left: 45px;
+  background-color: #fff;
+  z-index: 10;
+}
+
+table {
+  margin-right: -10px !important;
+}
+tr {
+  width: 110%;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+}
+
+.btn-right {
+  float: right;
+}
+
+h2 {
+  color: #66AAFF;
+}
+
+#ad {
+  width: 250px;
+  height: 180px;
+  position: absolute;
+  top: 140px;
+  right: 95px;
+}
+
+.footer {
+  background-color: #0099CC;
+  color: #fff;
+  height: 40px;
+  text-align: center;
+  margin-top: 101px;
+  padding-top: 15px;
+}

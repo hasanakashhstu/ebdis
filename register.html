@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBIDS</title>
+  <style>
+/* form stylesheet */
+form {
+      width: 60%;
+      border: 1px solid black;
+      margin: 0 auto;
+    }
+    
+    .form-inline {  
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    }
+
+    .form-inline label {
+      margin: 5px 10px 5px 0;
+    }
+
+    .form-inline input {
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .form-inline button {
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+
+    .form-inline button:hover {
+      background-color: royalblue;
+    }
+
+    @media (max-width: 800px) {
+      .form-inline input {
+        margin: 10px 0;
+      }
+      
+      .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <form class="form-inline" action="/action_page.php">
+    <table>
+      <tr>
+        <td>
+          <label for="user">User name:</label>
+          <input type="text" id="user" name="user">
+        </td>
+        </tr>
+      <tr>
+        <td>
+          <label for="pidn">Personal ID Number (PIDN):</label>
+          <input type="text" id="pidn" name="pidn">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="contact">Contact Number:</label>
+          <input type="text" id="contact" name="contact">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="company">Company Name:</label>
+          <input type="text" id="company" name="company">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="address">Company Address:</label>
+          <input type="text" id="address" name="address">
+        </td>
+      </tr>
+        <tr>
+          <td>
+            <button type="submit">Submit</button>
+          </td>
+        </tr>
+    </table>
+
+  </form>
+</body>
+</html>
