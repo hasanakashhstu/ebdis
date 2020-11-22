@@ -1,3 +1,25 @@
+<?php
+ include("php/dbconn.php");
+
+  if(isset($_POST['form-submit']))
+{
+  $tenderID = mysqli_real_escape_string($conn,$_POST['tenderID']);
+  $bidID = mysqli_real_escape_string($conn,$_POST['bidID']);
+  $cost = mysqli_real_escape_string($conn,$_POST['cost']);
+  $duration = mysqli_real_escape_string($conn,$_POST['duration']);
+  $warranty = mysqli_real_escape_string($conn,$_POST['warranty']);
+
+
+
+    $sql = "INSERT INTO itb (tenderID,bidID,cost,duration,warranty) VALUES ('$tenderID ','$bidID','$cost','$duration','$warranty')";
+    $run = mysqli_query($conn,$sql);
+    if($run){
+      header("refresh:0;url=ITB.php");
+    }
+}
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +37,13 @@
       border-collapse: collapse;
       width: 100%;
     }
-    
+
     td, th {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
     }
-    
+
     tr:nth-child(even) {
       background-color: #dddddd;
     }
@@ -32,8 +54,8 @@
       border: 1px solid black;
       margin: 0 auto;
     }
-    
-    .form-inline {  
+
+    .form-inline {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -67,7 +89,7 @@
       .form-inline input {
         margin: 10px 0;
       }
-      
+
       .form-inline {
         flex-direction: column;
         align-items: stretch;
@@ -77,7 +99,15 @@
     </style>
 </head>
 <body>
-  <table>
+  <?php
+   include("php/dbconn.php");
+
+   if(!$conn){
+    die(mysqli_error());
+   }
+   mysqli_select_db($conn,"tender");
+   $results = mysqli_query($conn,"SELECT TenderID,Tender_Title,Sector,Scope,Description FROM tender ");
+echo "  <table>
     <tr>
       <th>TenderID</th>
       <th>Tender Title</th>
@@ -85,32 +115,28 @@
       <th>Scope</th>
       <th>Description</th>
       <th>Click to Bid</th>
-    </tr>
-    <tr>
-      <td>9001</td>
-      <td>School Projects</td>
-      <td>Education</td>
-      <td>National</td>
-      <td>Upgrading of multipurpose hall in schools</td>
-      <td>
-        <input type="radio" name="bid" id="9001">
-      </td>
-    </tr>
-    <tr>
-      <td>9002</td>
-      <td>Building Automation</td>
-      <td>Industrial</td>
-      <td>Local</td>
-      <td>Improved access control to secured sites</td>
-      <td>
-        <input type="radio" name="bid" id="9002">
-      </td>
-    </tr>
-  </table>
-  <h3 style="text-align: center; text-decoration: underline;">Request for tender (RFT) List</h3>
+    </tr>";
 
+    while($row = mysqli_fetch_array($results) ){
 
-  <form class="form-inline" action="/action_page.php">
+    	   echo"<tr>";
+    	   echo "<td>".$row['TenderID']."</td>";
+         echo "<td>".$row['Tender_Title']."</td>";
+         echo "<td>".$row['Sector']."</td>";
+         echo "<td>".$row['Scope']."</td>";
+         echo "<td>".$row['Description']."</td>";
+        echo' <td>
+           <input type="radio" name="bid" id="9002">
+         </td>';
+    }
+echo"  </td>
+  </tr>
+</table>";
+ ?>
+
+<br><br>
+
+<form class="form-inline" id="" action="" method="post">
     <table>
       <tr>
         <td>
@@ -144,7 +170,9 @@
       </tr>
         <tr>
           <td>
-            <button type="submit">Submit</button>
+            <button type="submit" name="form-submit" class="button">
+              Submit
+            </button>
           </td>
         </tr>
     </table>

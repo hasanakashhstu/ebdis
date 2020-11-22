@@ -1,3 +1,39 @@
+<?php
+ include("php/dbconn.php");
+
+
+ if(isset($_POST['reset']))
+ {
+    header("refresh:0; url=index.php");
+ }
+if(isset($_POST['new_user']))
+{
+   header("refresh:0; url=register.php");
+}
+ if(isset($_POST['submit_log']))
+ {
+   $PIDN = mysqli_real_escape_string($conn,$_POST['PIDN']);
+   $password = mysqli_real_escape_string($conn,$_POST['password']);
+   $query ="select * from user where PIDN ='$PIDN ' and password='$password'";
+   $run = mysqli_query($conn,$query);
+   $count=mysqli_num_rows($run);
+
+   if ($count>0)
+     {
+       header("refresh:0; url=index.php");
+       $message = " You are logged In now...";
+       echo "<script type='text/javascript'>alert('$message');</script>";
+     }
+   else
+     {
+       header("refresh:0; url=index.php");
+       $message ="Incorrect UserName and Password combination...";
+       echo "<script type='text/javascript'>alert('$message');</script>";
+
+     }
+ }
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,30 +57,32 @@
         <a href="#"><img src="img/contact.png" alt="contact"></a>
 
         <h2 class="login-text">User Login</h2>
-        <form action="" class="login-form">
+        <form action="" class="login-form"  id="" action="" method="post">
 
           <table>
             <tr>
               <td>
                 <label for="pidn">PIDN:</label>
-                <input type="text">
+                <input type="text" id="PIDN" name="PIDN" >
               </td>
             </tr>
             <tr>
               <td>
                 <label for="password">Password:</label>
-                <input type="password">
+                <input type="password" id="password" name="password" >
               </td>
             </tr>
             <tr>
               <td>
-                <button type="submit">Login</button>
-                <button type="submit">Reset</button>
-                <button type="submit" class="btn-right">New User</button>
+                <button type="submit" name="submit_log" class="button">
+                  Submit
+                </button>
+                <button type="submit" name="reset" class="button">Reset</button>
+                <button type="submit" name="new_user" class="button">New User</button>
               </td>
             </tr>
           </table>
-          
+
         </form>
 
       </div>
@@ -80,6 +118,6 @@
     </footer>
   </div>
 
-  
+
 </body>
 </html>
